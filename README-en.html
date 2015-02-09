@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="generator" content="ReText 4.1.2">
+<title>README-en</title>
+</head>
+<body>
+<h2>IGNSDK Installation</h2>
+<p>IGN SDK included in IGOS Nusantara D9.1 as default package. If it's not installed in your system, see the following step to start the installation:</p>
+<ol>
+<li>Open yours Terminal Application</li>
+<li>IGN SDK binary is launcher for the application built with IGN SDK. You could install IGN SDK package using this command:<blockquote>
+<p>$ sudo yum install ignsdk</p>
+</blockquote>
+</li>
+<li>You could try another optional package called <code>ignsdk-devtools</code>. This package is contain tools for creating and packaging IGN SDK Application. Try this command to install <code>ignsdk-devtools</code>:  <blockquote>
+<p>$ sudo yum install ignsdk-devtools</p>
+</blockquote>
+</li>
+<li>You could test the SDK by running the sample application that located in /usr/share/ignsdk/test. Try this example test:<blockquote>
+<p>ignsdk -p /usr/share/ign-sdk/test/calculator.ign</p>
+</blockquote>
+</li>
+</ol>
+<h2>Create Application with IGN SDK</h2>
+<p>IGN SDK Developer Tools will help you to create an IGN SDK application. In other way, this script could packaging your application into <strong>.deb</strong> (Debian, Ubuntu, LinuxMint, etc) and <strong>.rpm</strong> (IGOS Nusantara, openSUSE) package. Before further reading, make sure that IGN SDK Developer Tools have installed in your Linux Machine that supported by IGN SDK.</p>
+<ol>
+<li>Open your terminal</li>
+<li>Run <code>ignsdk-app-creator -p [packet_name]</code> command in your terminal. <strong>[packet_name]</strong> is filled with your application name. The character must be in lower case, alphanumeric or <strong>dash</strong> ( - ) character.  Make a sure that your application name is not duplicate with other application installed at repository (ex: gimp, apache, mysql, dsb.). For the example, you could give a name <code>aplikasi-keren</code> for your application.</li>
+</ol>
+<pre><code>$ ignsdk-app-creator -p aplikasi-keren
+</code></pre>
+
+<ol>
+<li>In the next step, the creator will prompt you to type the application name. Fill it with your application name</li>
+</ol>
+<pre><code>Application name: Aplikasi Keren
+</code></pre>
+
+<ol>
+<li>In category field, fill the number that match with a category of your application. For the example "Aplikasi Keren" is music player application, so you must fill the field with number 2 (Audio).</li>
+</ol>
+<pre><code>Choose one: 2
+</code></pre>
+
+<ol>
+<li>Next, you will prompt to fill the package version. Fill it with 1.0</li>
+</ol>
+<pre><code>Version [1.0]: 1.0
+</code></pre>
+
+<ol>
+<li>For the package release field, fill it with code of distro that will be installation target of your application. If you want to target your application for IGOS Nusantara D9.x, fill it with "ign9"</li>
+</ol>
+<pre><code>Release [1]: ign9
+</code></pre>
+
+<ol>
+<li>In the license field, fill it with your license option that will be used for your application. It's better to understand the license content you choose in this step</li>
+</ol>
+<pre><code>License [MIT/BSD/GPL2/GPL3/etc, default=MIT]: MIT
+</code></pre>
+
+<ol>
+<li>Fill your application URL website in the URL Field</li>
+</ol>
+<pre><code>URL [example.com]: ignsdk.web.id
+</code></pre>
+
+<ol>
+<li>Fill the description field with a description of your application</li>
+</ol>
+<pre><code>Description: Aplikasi keren untuk memutar musik
+</code></pre>
+
+<ol>
+<li>This script will create new application in <strong>/home/user/IGNSDK-APP/aplikasi-keren.ign</strong> directory. You could run that application with this command</li>
+</ol>
+<pre><code>$ ignsdk -p ~/IGNSDK-APP/aplikasi-keren.ign
+</code></pre>
+
+<h2>Debugging</h2>
+<p>In development phase, debugging process has an important roles for helping a developer to know what a process has been executed or emitted error by our application. In IGN SDK, you could choose two mode for debugging your application. You could choose local debugging or remote debugging.</p>
+<h3>1.1 Local Debugging</h3>
+<p>By default, IGN SDK local debugging could be activated by this method:</p>
+<ul>
+<li>Give a parameter -d while execute IGN SDK application</li>
+</ul>
+<pre><code>$ ignsdk -d -p ~/IGNSDK-APP/aplikasi-keren.ign
+</code></pre>
+
+<ul>
+<li>Add the <code>debug</code> object with <code>true</code> value within <code>ignsdk.json</code> file</li>
+</ul>
+<pre><code class="json">{
+    &quot;config&quot; : {
+    &quot;debug&quot; : true,
+    &quot;websecurity&quot; : true,
+    &quot;name&quot; : &quot;Aplikasi Keren&quot;
+    }
+}
+</code></pre>
+
+<p><img alt="Local Debugging" src="img/gb1.png"></p>
+<h3>1.2 Remote Debugging</h3>
+<p>Remote debugging will facilitated developer to enter IGN SDK debug mode with browser or other device. To activated remote debugging, you just add a parameter <code>-r &lt;port&gt;</code> while execute IGN SDK application</p>
+<pre><code>$ ignsdk -d -r 8080 ~/IGNSDK-APP/aplikasi-keren.ign
+</code></pre>
+
+<p>Then access the debugging mode at your browser with this URL <code>http://ip-target:port</code>. For the example you could try <code>http://127.0.0.1:8080</code> to access your application debugging mode.</p>
+<h2>Packaging the Application</h2>
+<p>IGN SDK-based application could distribute to user in many ways. The easiest way to distribute your application is create .deb or .rpm package for your application. The script that will be used for packaging the application is <code>ignsdk-app-builder</code>.</p>
+<ol>
+<li>Open your terminal</li>
+<li>Run this command “ignsdk-app-builder -p [package_name]” in terminal. [packet_name] is name of application that you create before, and it's located in
+'/home/igos/IGNSDK-APP/'. </li>
+</ol>
+<pre><code>$ ignsdk-app-builder -p aplikasi-keren
+</code></pre>
+
+<ol>
+<li>Packaging system will start the process</li>
+<li>If the process has finish, the package will bundled in .rpm with name <code>aplikasikeren.ign-1.0-ign9.noarch.rpm</code>. You could find the package at  <code>/home/igos/rpmbuild/RPMS/noarch/</code>. And now try to install that package with this command:</li>
+</ol>
+<pre><code>$ sudo yum install ~/rpmbuild/RPMS/noarch/aplikasi-keren.ign-1.0-ign9.noarch.rpm
+</code></pre>
+
+<ol>
+<li>After the package is installed, it will appear a menu called <strong>Aplikasi Keren</strong>. Next, the application could execute from that menu</li>
+</ol>
+<h2>Example Application</h2>
+<h3>2.1 Spawn API</h3>
+<p><strong>Javascript :</strong></p>
+<pre><code class="javascript">/*Import Sys Module from IGNSDK runtime*/
+var sys = ign.sys();
+
+$(document).ready(function(){
+  $('#exec').click(function(){
+    /*Get the command field
+    dari text input id (#) &quot;cmd&quot;*/
+    var cmd = $('#cmd').val();
+    /*Command are sent to IGN SDK runtime
+    IGNSDK untuk di eksekusi*/
+    sys.exec(cmd);
+    sys.out.connect(function(out){
+      /*stdout result from runtime is display to id element*/
+      $('#out').prepend(out+&quot;&lt;br&gt;&quot;);
+    })
+  });
+
+  $('#kill').click(function(){
+    /*Stopping the process*/
+    sys.kill();
+  });
+});
+</code></pre>
+
+<p><strong>HTML :</strong></p>
+<pre><code class="html">&lt;body&gt;
+  &lt;input type=&quot;text&quot; value=&quot;ping google.com&quot; id=&quot;cmd&quot;&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;exec&quot; id=&quot;exec&quot;&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;kill&quot; id=&quot;kill&quot;&gt;&lt;br&gt;
+  &lt;div id=&quot;out&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
+<h3>2.2 CRUD</h3>
+<p><strong>Javascript :</strong></p>
+<pre><code class="javascript">//Import required module from IGN SDK runtime
+var fs = ign.filesystem();
+var sql = ign.sql();
+//database file name
+var dbFile = &quot;coba.db&quot;;
+
+$(document).ready(function(){
+    //reference http://goo.gl/E0obMa
+  //check if in database is exists
+    if(fs.info(dbFile).exists){
+    // if database exists, application will execute load() function
+        sql.driver(&quot;sqlite&quot;, dbFile);
+        load();
+    }
+    else{
+    //Execute the setupDB() if database is not exists
+        setupDb();
+    }
+});
+
+function setupDb(){
+    //connect to database
+    sql.driver(&quot;sqlite&quot;, dbFile);
+
+    //create user table wit id, nama, and umur field
+    sql.query(&quot;create table user(id INTEGER PRIMARY KEY AUTOINCREMENT,nama varchar(10), umur smallint)&quot;);
+}
+
+function add(){
+    var nama = $(&quot;#nama&quot;).val();
+    var umur = $(&quot;#umur&quot;).val();
+    //query for inserting data into database
+    var add = sql.query(&quot;insert into user (nama,umur) values ('&quot;+nama+&quot;',&quot;+umur+&quot;)&quot;);
+    alert(&quot;input berhasil status &quot;+add.status);
+}
+
+function load(){
+    //query for fetching data
+    var loadData = sql.query(&quot;select * from user&quot;);
+    var html=&quot;&quot;;
+
+    loadData.content.forEach(function(data){
+        html += &quot;Nama : &quot; + data.nama + &quot;&lt;br&gt;&quot;;
+        html += &quot;Umur : &quot; + data.umur + &quot;&lt;br&gt;&quot;;
+        html += &quot;&lt;a href='#' onclick='del(&quot;+data.id+&quot;)'&gt;Delete&lt;/a&gt;&lt;hr&gt;&quot;;
+    });
+    $(&quot;#out&quot;).html(html);
+}
+
+function del(id){
+    //query for deleting data
+    var del = sql.query(&quot;delete from user where id=&quot;+id);
+}
+</code></pre>
+
+<p><strong>HTML :</strong></p>
+<pre><code class="html">&lt;input type=&quot;text&quot; placeholder=&quot;Nama&quot; id=&quot;nama&quot;&gt;&lt;br&gt;
+&lt;input type=&quot;text&quot; placeholder=&quot;Umur&quot; id=&quot;umur&quot;&gt;&lt;br&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Tambah Data&quot; onclick=&quot;add()&quot;&gt;
+&lt;div id=&quot;out&quot;&gt;&lt;/div&gt;
+</code></pre>
+</body>
+</html>
