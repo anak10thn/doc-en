@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Doc-en : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Doc-en</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ignsdk/doc-en">View on GitHub</a>
+
+          <h1 id="project_title">Doc-en</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ignsdk/doc-en/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ignsdk/doc-en/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="ignsdk-installation" class="anchor" href="#ignsdk-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>IGNSDK Installation</h2>
+
+<p>IGN SDK is included in IGOS Nusantara D9.1 as default package. If it's not installed in your system, see the following step to start the installation:</p>
+
+<ol>
+<li>Open your Terminal Application</li>
+<li>IGN SDK binary is launcher for the application built with IGN SDK. You could install IGN SDK package using this command:
+&gt; $ sudo yum install ignsdk</li>
+<li>You could try another optional package called <code>ignsdk-devtools</code>. This package is contain tools for creating and packaging IGN SDK Application. Try this command to install <code>ignsdk-devtools</code>:<br>
+&gt; $ sudo yum install ignsdk-devtools</li>
+<li>You could test the SDK by running the sample application that located in /usr/share/ignsdk/test. Try this example test:
+&gt; ignsdk -p /usr/share/ign-sdk/test/calculator.ign</li>
+</ol>
+
+<h2>
+<a id="create-application-with-ign-sdk" class="anchor" href="#create-application-with-ign-sdk" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create Application with IGN SDK</h2>
+
+<p>IGN SDK Developer Tools will help you to create an IGN SDK application. In other way, this script could packaging your application into <strong>.deb</strong> (Debian, Ubuntu, LinuxMint, etc) and <strong>.rpm</strong> (IGOS Nusantara, openSUSE) package. Before further reading, make sure that IGN SDK Developer Tools have installed in your Linux Machine that supported by IGN SDK.</p>
+
+<ol>
+<li>Open your terminal</li>
+<li>Run <code>ignsdk-app-creator -p [packet_name]</code> command in your terminal. <strong>[packet_name]</strong> is filled with your application name. The character must be in lower case, alphanumeric or <strong>dash</strong> ( - ) character.  Make a sure that your application name is not duplicate with other application installed at repository (ex: gimp, apache, mysql, dsb.). For the example, you could give a name <code>aplikasi-keren</code> for your application.</li>
+</ol>
+
+<pre><code>$ ignsdk-app-creator -p aplikasi-keren
+</code></pre>
+
+<ol>
+<li>In the next step, the creator will prompt you to type the application name. Fill it with your application name</li>
+</ol>
+
+<pre><code>Application name: Aplikasi Keren
+</code></pre>
+
+<ol>
+<li>In category field, fill the number that match with a category of your application. For the example "Aplikasi Keren" is music player application, so you must fill the field with number 2 (Audio).</li>
+</ol>
+
+<pre><code>Choose one: 2
+</code></pre>
+
+<ol>
+<li>Next, you will prompt to fill the package version. Fill it with 1.0</li>
+</ol>
+
+<pre><code>Version [1.0]: 1.0
+</code></pre>
+
+<ol>
+<li>For the package release field, fill it with code of distro that will be installation target of your application. If you want to target your application for IGOS Nusantara D9.x, fill it with "ign9"</li>
+</ol>
+
+<pre><code>Release [1]: ign9
+</code></pre>
+
+<ol>
+<li>In the license field, fill it with your license option that will be used for your application. It's better to understand the license content you choose in this step</li>
+</ol>
+
+<pre><code>License [MIT/BSD/GPL2/GPL3/etc, default=MIT]: MIT
+</code></pre>
+
+<ol>
+<li>Fill your application URL website in the URL Field</li>
+</ol>
+
+<pre><code>URL [example.com]: ignsdk.web.id
+</code></pre>
+
+<ol>
+<li>Fill the description field with a description of your application</li>
+</ol>
+
+<pre><code>Description: Aplikasi keren untuk memutar musik
+</code></pre>
+
+<ol>
+<li>This script will create new application in <strong>/home/user/IGNSDK-APP/aplikasi-keren.ign</strong> directory. You could run that application with this command</li>
+</ol>
+
+<pre><code>$ ignsdk -p ~/IGNSDK-APP/aplikasi-keren.ign
+</code></pre>
+
+<h2>
+<a id="debugging" class="anchor" href="#debugging" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debugging</h2>
+
+<p>In development phase, debugging process has an important roles for helping a developer to know what a process has been executed or emitted error by our application. In IGN SDK, you could choose two mode for debugging your application. You could choose local debugging or remote debugging.</p>
+
+<h3>
+<a id="11-local-debugging" class="anchor" href="#11-local-debugging" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 Local Debugging</h3>
+
+<p>By default, IGN SDK local debugging could be activated by this method:</p>
+
+<ul>
+<li>Give a parameter -d while execute IGN SDK application</li>
+</ul>
+
+<pre><code>$ ignsdk -d -p ~/IGNSDK-APP/aplikasi-keren.ign
+</code></pre>
+
+<ul>
+<li>Add the <code>debug</code> object with <code>true</code> value within <code>ignsdk.json</code> file</li>
+</ul>
+
+<div class="highlight highlight-json"><pre>{
+    <span class="pl-s1"><span class="pl-pds">"</span>config<span class="pl-pds">"</span></span> : {
+    <span class="pl-s1"><span class="pl-pds">"</span>debug<span class="pl-pds">"</span></span> : <span class="pl-c1">true</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>websecurity<span class="pl-pds">"</span></span> : <span class="pl-c1">true</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span> : <span class="pl-s1"><span class="pl-pds">"</span>Aplikasi Keren<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
+
+<p><img src="img/gb1.png" alt="Local Debugging"></p>
+
+<h3>
+<a id="12-remote-debugging" class="anchor" href="#12-remote-debugging" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 Remote Debugging</h3>
+
+<p>Remote debugging will facilitated developer to enter IGN SDK debug mode with browser or other device. To activated remote debugging, you just add a parameter <code>-r &lt;port&gt;</code> while execute IGN SDK application</p>
+
+<pre><code>$ ignsdk -d -r 8080 ~/IGNSDK-APP/aplikasi-keren.ign
+</code></pre>
+
+<p>Then access the debugging mode at your browser with this URL <code>http://ip-target:port</code>. For the example you could try <code>http://127.0.0.1:8080</code> to access your application debugging mode.</p>
+
+<h2>
+<a id="packaging-the-application" class="anchor" href="#packaging-the-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packaging the Application</h2>
+
+<p>IGN SDK-based application could distribute to user in many ways. The easiest way to distribute your application is create .deb or .rpm package for your application. The script that will be used for packaging the application is <code>ignsdk-app-builder</code>.</p>
+
+<ol>
+<li>Open your terminal</li>
+<li>Run this command “ignsdk-app-builder -p [package_name]” in terminal. [packet_name] is name of application that you create before, and it's located in
+'/home/igos/IGNSDK-APP/'. </li>
+</ol>
+
+<pre><code>$ ignsdk-app-builder -p aplikasi-keren
+</code></pre>
+
+<ol>
+<li>Packaging system will start the process</li>
+<li>If the process has finish, the package will bundled in .rpm with name <code>aplikasikeren.ign-1.0-ign9.noarch.rpm</code>. You could find the package at  <code>/home/igos/rpmbuild/RPMS/noarch/</code>. And now try to install that package with this command:</li>
+</ol>
+
+<pre><code>$ sudo yum install ~/rpmbuild/RPMS/noarch/aplikasi-keren.ign-1.0-ign9.noarch.rpm
+</code></pre>
+
+<ol>
+<li>After the package is installed, it will appear a menu called <strong>Aplikasi Keren</strong>. Next, the application could execute from that menu</li>
+</ol>
+
+<h2>
+<a id="example-application" class="anchor" href="#example-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Application</h2>
+
+<h3>
+<a id="21-spawn-api" class="anchor" href="#21-spawn-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1 Spawn API</h3>
+
+<p><strong>Javascript :</strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">/*Import Sys Module from IGNSDK runtime*/</span>
+<span class="pl-s">var</span> sys <span class="pl-k">=</span> ign.sys();
+
+$(<span class="pl-s3">document</span>).ready(<span class="pl-st">function</span>(){
+  $(<span class="pl-s1"><span class="pl-pds">'</span>#exec<span class="pl-pds">'</span></span>).<span class="pl-s3">click</span>(<span class="pl-st">function</span>(){
+    <span class="pl-c">/*Get the command field</span>
+<span class="pl-c">    dari text input id (#) "cmd"*/</span>
+    <span class="pl-s">var</span> cmd <span class="pl-k">=</span> $(<span class="pl-s1"><span class="pl-pds">'</span>#cmd<span class="pl-pds">'</span></span>).val();
+    <span class="pl-c">/*Command are sent to IGN SDK runtime</span>
+<span class="pl-c">    IGNSDK untuk di eksekusi*/</span>
+    sys.<span class="pl-s3">exec</span>(cmd);
+    sys.out.connect(<span class="pl-st">function</span>(<span class="pl-vpf">out</span>){
+      <span class="pl-c">/*stdout result from runtime is display to id element*/</span>
+      $(<span class="pl-s1"><span class="pl-pds">'</span>#out<span class="pl-pds">'</span></span>).prepend(out<span class="pl-k">+</span><span class="pl-s1"><span class="pl-pds">"</span>&lt;br&gt;<span class="pl-pds">"</span></span>);
+    })
+  });
+
+  $(<span class="pl-s1"><span class="pl-pds">'</span>#kill<span class="pl-pds">'</span></span>).<span class="pl-s3">click</span>(<span class="pl-st">function</span>(){
+    <span class="pl-c">/*Stopping the process*/</span>
+    sys.kill();
+  });
+});</pre></div>
+
+<p><strong>HTML :</strong></p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">body</span>&gt;
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s1"><span class="pl-pds">"</span>ping google.com<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>cmd<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>submit<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s1"><span class="pl-pds">"</span>exec<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>exec<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>submit<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s1"><span class="pl-pds">"</span>kill<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>kill<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">br</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>out<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">body</span>&gt;</pre></div>
+
+<h3>
+<a id="22-crud" class="anchor" href="#22-crud" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2 CRUD</h3>
+
+<p><strong>Javascript :</strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">//Import required module from IGN SDK runtime</span>
+<span class="pl-s">var</span> fs <span class="pl-k">=</span> ign.filesystem();
+<span class="pl-s">var</span> sql <span class="pl-k">=</span> ign.sql();
+<span class="pl-c">//database file name</span>
+<span class="pl-s">var</span> dbFile <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>coba.db<span class="pl-pds">"</span></span>;
+
+$(<span class="pl-s3">document</span>).ready(<span class="pl-st">function</span>(){
+    <span class="pl-c">//reference http://goo.gl/E0obMa</span>
+  <span class="pl-c">//check if in database is exists</span>
+    <span class="pl-k">if</span>(fs<span class="pl-s3">.info</span>(dbFile).exists){
+    <span class="pl-c">// if database exists, application will execute load() function</span>
+        sql.driver(<span class="pl-s1"><span class="pl-pds">"</span>sqlite<span class="pl-pds">"</span></span>, dbFile);
+        <span class="pl-s3">load</span>();
+    }
+    <span class="pl-k">else</span>{
+    <span class="pl-c">//Execute the setupDB() if database is not exists</span>
+        setupDb();
+    }
+});
+
+<span class="pl-st">function</span> <span class="pl-en">setupDb</span>(){
+    <span class="pl-c">//connect to database</span>
+    sql.driver(<span class="pl-s1"><span class="pl-pds">"</span>sqlite<span class="pl-pds">"</span></span>, dbFile);
+
+    <span class="pl-c">//create user table wit id, nama, and umur field</span>
+    sql.query(<span class="pl-s1"><span class="pl-pds">"</span>create table user(id INTEGER PRIMARY KEY AUTOINCREMENT,nama varchar(10), umur smallint)<span class="pl-pds">"</span></span>);
+}
+
+<span class="pl-st">function</span> <span class="pl-en">add</span>(){
+    <span class="pl-s">var</span> nama <span class="pl-k">=</span> $(<span class="pl-s1"><span class="pl-pds">"</span>#nama<span class="pl-pds">"</span></span>).val();
+    <span class="pl-s">var</span> umur <span class="pl-k">=</span> $(<span class="pl-s1"><span class="pl-pds">"</span>#umur<span class="pl-pds">"</span></span>).val();
+    <span class="pl-c">//query for inserting data into database</span>
+    <span class="pl-s">var</span> add <span class="pl-k">=</span> sql.query(<span class="pl-s1"><span class="pl-pds">"</span>insert into user (nama,umur) values ('<span class="pl-pds">"</span></span><span class="pl-k">+</span>nama<span class="pl-k">+</span><span class="pl-s1"><span class="pl-pds">"</span>',<span class="pl-pds">"</span></span><span class="pl-k">+</span>umur<span class="pl-k">+</span><span class="pl-s1"><span class="pl-pds">"</span>)<span class="pl-pds">"</span></span>);
+    <span class="pl-s3">alert</span>(<span class="pl-s1"><span class="pl-pds">"</span>input berhasil status <span class="pl-pds">"</span></span><span class="pl-k">+</span>add.<span class="pl-sc">status</span>);
+}
+
+<span class="pl-st">function</span> <span class="pl-en">load</span>(){
+    <span class="pl-c">//query for fetching data</span>
+    <span class="pl-s">var</span> loadData <span class="pl-k">=</span> sql.query(<span class="pl-s1"><span class="pl-pds">"</span>select * from user<span class="pl-pds">"</span></span>);
+    <span class="pl-s">var</span> html<span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>;
+
+    loadData.<span class="pl-sc">content</span>.forEach(<span class="pl-st">function</span>(<span class="pl-vpf">data</span>){
+        html <span class="pl-k">+=</span> <span class="pl-s1"><span class="pl-pds">"</span>Nama : <span class="pl-pds">"</span></span> <span class="pl-k">+</span> data.nama <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>&lt;br&gt;<span class="pl-pds">"</span></span>;
+        html <span class="pl-k">+=</span> <span class="pl-s1"><span class="pl-pds">"</span>Umur : <span class="pl-pds">"</span></span> <span class="pl-k">+</span> data.umur <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>&lt;br&gt;<span class="pl-pds">"</span></span>;
+        html <span class="pl-k">+=</span> <span class="pl-s1"><span class="pl-pds">"</span>&lt;a href='#' onclick='del(<span class="pl-pds">"</span></span><span class="pl-k">+</span>data.<span class="pl-sc">id</span><span class="pl-k">+</span><span class="pl-s1"><span class="pl-pds">"</span>)'&gt;Delete&lt;/a&gt;&lt;hr&gt;<span class="pl-pds">"</span></span>;
+    });
+    $(<span class="pl-s1"><span class="pl-pds">"</span>#out<span class="pl-pds">"</span></span>).html(html);
+}
+
+<span class="pl-st">function</span> <span class="pl-en">del</span>(<span class="pl-vpf">id</span>){
+    <span class="pl-c">//query for deleting data</span>
+    <span class="pl-s">var</span> del <span class="pl-k">=</span> sql.query(<span class="pl-s1"><span class="pl-pds">"</span>delete from user where id=<span class="pl-pds">"</span></span><span class="pl-k">+</span>id);
+}</pre></div>
+
+<p><strong>HTML :</strong></p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s1"><span class="pl-pds">"</span>Nama<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>nama<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">br</span>&gt;
+&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s1"><span class="pl-pds">"</span>Umur<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>umur<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">br</span>&gt;
+&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>submit<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s1"><span class="pl-pds">"</span>Tambah Data<span class="pl-pds">"</span></span> <span class="pl-e">onclick</span>=<span class="pl-s1"><span class="pl-pds">"</span>add()<span class="pl-pds">"</span></span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>out<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Doc-en maintained by <a href="https://github.com/ignsdk">ignsdk</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
