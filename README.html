@@ -28,23 +28,23 @@
 
 <p>IGN SDK is included in IGOS Nusantara D9.1 as default package. If it's not installed in your system, see the following step to start the installation:</p>
 
-<ol>
+<ul>
 <li>Open your Terminal Application</li>
 <li>IGN SDK binary is launcher for the application built with IGN SDK. You could install IGN SDK package using this command:</li>
-</ol>
+</ul>
 
 <div class="highlight highlight-shell"><pre>$ sudo yum install ignsdk</pre></div>
 
-<ol>
+<ul>
 <li>You could try another optional package called <code>ignsdk-devtools</code>. This package is contain tools for creating and packaging IGN SDK Application. Try this command to install <code>ignsdk-devtools</code>:<br>
 </li>
-</ol>
+</ul>
 
 <div class="highlight highlight-shell"><pre>$ sudo yum install ignsdk-devtools</pre></div>
 
-<ol>
+<ul>
 <li>You could test the SDK by running the sample application that located in /usr/share/ignsdk/test. Try this example test:</li>
-</ol>
+</ul>
 
 <div class="highlight highlight-shell"><pre>ignsdk -p /usr/share/ign-sdk/test/calculator.ign</pre></div>
 
@@ -53,66 +53,66 @@
 
 <p>IGN SDK Developer Tools will help you to create an IGN SDK application. In other way, this script could packaging your application into <strong>.deb</strong> (Debian, Ubuntu, LinuxMint, etc) and <strong>.rpm</strong> (IGOS Nusantara, openSUSE) package. Before further reading, make sure that IGN SDK Developer Tools have installed in your Linux Machine that supported by IGN SDK.</p>
 
-<ol>
+<ul>
 <li>Open your terminal</li>
 <li>Run <code>ignsdk-app-creator -p [packet_name]</code> command in your terminal. <strong>[packet_name]</strong> is filled with your application name. The character must be in lower case, alphanumeric or <strong>dash</strong> ( - ) character.  Make a sure that your application name is not duplicate with other application installed at repository (ex: gimp, apache, mysql, dsb.). For the example, you could give a name <code>aplikasi-keren</code> for your application.</li>
-</ol>
+</ul>
 
 <pre><code>$ ignsdk-app-creator -p aplikasi-keren
 </code></pre>
 
-<ol>
+<ul>
 <li>In the next step, the creator will prompt you to type the application name. Fill it with your application name</li>
-</ol>
+</ul>
 
 <pre><code>Application name: Aplikasi Keren
 </code></pre>
 
-<ol>
+<ul>
 <li>In category field, fill the number that match with a category of your application. For the example "Aplikasi Keren" is music player application, so you must fill the field with number 2 (Audio).</li>
-</ol>
+</ul>
 
 <pre><code>Choose one: 2
 </code></pre>
 
-<ol>
+<ul>
 <li>Next, you will prompt to fill the package version. Fill it with 1.0</li>
-</ol>
+</ul>
 
 <pre><code>Version [1.0]: 1.0
 </code></pre>
 
-<ol>
+<ul>
 <li>For the package release field, fill it with code of distro that will be installation target of your application. If you want to target your application for IGOS Nusantara D9.x, fill it with "ign9"</li>
-</ol>
+</ul>
 
 <pre><code>Release [1]: ign9
 </code></pre>
 
-<ol>
+<ul>
 <li>In the license field, fill it with your license option that will be used for your application. It's better to understand the license content you choose in this step</li>
-</ol>
+</ul>
 
 <pre><code>License [MIT/BSD/GPL2/GPL3/etc, default=MIT]: MIT
 </code></pre>
 
-<ol>
+<ul>
 <li>Fill your application URL website in the URL Field</li>
-</ol>
+</ul>
 
 <pre><code>URL [example.com]: ignsdk.web.id
 </code></pre>
 
-<ol>
+<ul>
 <li>Fill the description field with a description of your application</li>
-</ol>
+</ul>
 
 <pre><code>Description: Aplikasi keren untuk memutar musik
 </code></pre>
 
-<ol>
+<ul>
 <li>This script will create new application in <strong>/home/user/IGNSDK-APP/aplikasi-keren.ign</strong> directory. You could run that application with this command</li>
-</ol>
+</ul>
 
 <pre><code>$ ignsdk -p ~/IGNSDK-APP/aplikasi-keren.ign
 </code></pre>
@@ -161,26 +161,26 @@
 
 <p>IGN SDK-based application could distribute to user in many ways. The easiest way to distribute your application is create .deb or .rpm package for your application. The script that will be used for packaging the application is <code>ignsdk-app-builder</code>.</p>
 
-<ol>
+<ul>
 <li>Open your terminal</li>
 <li>Run this command “ignsdk-app-builder -p [package_name]” in terminal. [packet_name] is name of application that you create before, and it's located in
 '/home/igos/IGNSDK-APP/'. </li>
-</ol>
+</ul>
 
 <pre><code>$ ignsdk-app-builder -p aplikasi-keren
 </code></pre>
 
-<ol>
+<ul>
 <li>Packaging system will start the process</li>
 <li>If the process has finish, the package will bundled in .rpm with name <code>aplikasikeren.ign-1.0-ign9.noarch.rpm</code>. You could find the package at  <code>/home/igos/rpmbuild/RPMS/noarch/</code>. And now try to install that package with this command:</li>
-</ol>
+</ul>
 
 <pre><code>$ sudo yum install ~/rpmbuild/RPMS/noarch/aplikasi-keren.ign-1.0-ign9.noarch.rpm
 </code></pre>
 
-<ol>
+<ul>
 <li>After the package is installed, it will appear a menu called <strong>Aplikasi Keren</strong>. Next, the application could execute from that menu</li>
-</ol>
+</ul>
 
 <h2>
 <a id="user-content-example-application" class="anchor" href="#example-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Application</h2>
@@ -232,13 +232,16 @@ $(<span class="pl-s3">document</span>).ready(<span class="pl-st">function</span>
 <span class="pl-s">var</span> sql <span class="pl-k">=</span> ign.sql();
 <span class="pl-c">//database file name</span>
 <span class="pl-s">var</span> dbFile <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>coba.db<span class="pl-pds">"</span></span>;
-
+<span class="pl-s">var</span> config <span class="pl-k">=</span> {
+    driver <span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>sqlite<span class="pl-pds">'</span></span>,
+    db <span class="pl-k">:</span> dbFile
+}
 $(<span class="pl-s3">document</span>).ready(<span class="pl-st">function</span>(){
     <span class="pl-c">//reference http://goo.gl/E0obMa</span>
   <span class="pl-c">//check if in database is exists</span>
     <span class="pl-k">if</span>(fs<span class="pl-s3">.info</span>(dbFile).exists){
     <span class="pl-c">// if database exists, application will execute load() function</span>
-        sql.driver(<span class="pl-s1"><span class="pl-pds">"</span>sqlite<span class="pl-pds">"</span></span>, dbFile);
+        sql.driver(config);
         <span class="pl-s3">load</span>();
     }
     <span class="pl-k">else</span>{
@@ -249,7 +252,7 @@ $(<span class="pl-s3">document</span>).ready(<span class="pl-st">function</span>
 
 <span class="pl-st">function</span> <span class="pl-en">setupDb</span>(){
     <span class="pl-c">//connect to database</span>
-    sql.driver(<span class="pl-s1"><span class="pl-pds">"</span>sqlite<span class="pl-pds">"</span></span>, dbFile);
+    sql.driver(config);
 
     <span class="pl-c">//create user table wit id, nama, and umur field</span>
     sql.query(<span class="pl-s1"><span class="pl-pds">"</span>create table user(id INTEGER PRIMARY KEY AUTOINCREMENT,nama varchar(10), umur smallint)<span class="pl-pds">"</span></span>);
