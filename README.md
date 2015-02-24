@@ -164,13 +164,16 @@ var fs = ign.filesystem();
 var sql = ign.sql();
 //database file name
 var dbFile = "coba.db";
-
+var config = {
+    driver : 'sqlite',
+    db : dbFile
+}
 $(document).ready(function(){
 	//reference http://goo.gl/E0obMa
   //check if in database is exists
 	if(fs.info(dbFile).exists){
     // if database exists, application will execute load() function
-		sql.driver("sqlite", dbFile);
+		sql.driver(config);
 		load();
 	}
 	else{
@@ -181,7 +184,7 @@ $(document).ready(function(){
 
 function setupDb(){
     //connect to database
-	sql.driver("sqlite", dbFile);
+	sql.driver(config);
     
     //create user table wit id, nama, and umur field
 	sql.query("create table user(id INTEGER PRIMARY KEY AUTOINCREMENT,nama varchar(10), umur smallint)");
