@@ -4,11 +4,18 @@ IGN SDK is included in IGOS Nusantara D9.1 as default package. If it's not insta
 
 1. Open your Terminal Application
 2. IGN SDK binary is launcher for the application built with IGN SDK. You could install IGN SDK package using this command:
-> $ sudo yum install ignsdk
+~~~shell
+$ sudo yum install ignsdk
+~~~
+
 3. You could try another optional package called `ignsdk-devtools`. This package is contain tools for creating and packaging IGN SDK Application. Try this command to install `ignsdk-devtools`:  
-> $ sudo yum install ignsdk-devtools
+~~~shell
+$ sudo yum install ignsdk-devtools
+~~~
 4. You could test the SDK by running the sample application that located in /usr/share/ignsdk/test. Try this example test:
-> ignsdk -p /usr/share/ign-sdk/test/calculator.ign
+~~~shell
+ignsdk -p /usr/share/ign-sdk/test/calculator.ign
+~~~
 
 ##Create Application with IGN SDK
 
@@ -19,34 +26,42 @@ IGN SDK Developer Tools will help you to create an IGN SDK application. In other
 ~~~
 $ ignsdk-app-creator -p aplikasi-keren
 ~~~
+
 3. In the next step, the creator will prompt you to type the application name. Fill it with your application name
 ~~~
 Application name: Aplikasi Keren
 ~~~
+
 4. In category field, fill the number that match with a category of your application. For the example "Aplikasi Keren" is music player application, so you must fill the field with number 2 (Audio).
 ~~~
 Choose one: 2
 ~~~
+
 5. Next, you will prompt to fill the package version. Fill it with 1.0
 ~~~
 Version [1.0]: 1.0
 ~~~
+
 6. For the package release field, fill it with code of distro that will be installation target of your application. If you want to target your application for IGOS Nusantara D9.x, fill it with "ign9"
 ~~~
 Release [1]: ign9
 ~~~
+
 7. In the license field, fill it with your license option that will be used for your application. It's better to understand the license content you choose in this step
 ~~~
 License [MIT/BSD/GPL2/GPL3/etc, default=MIT]: MIT
 ~~~
+
 8. Fill your application URL website in the URL Field
 ~~~
 URL [example.com]: ignsdk.web.id
 ~~~
+
 9. Fill the description field with a description of your application
 ~~~
 Description: Aplikasi keren untuk memutar musik
 ~~~
+
 10. This script will create new application in **/home/user/IGNSDK-APP/aplikasi-keren.ign** directory. You could run that application with this command
 ~~~
 $ ignsdk -p ~/IGNSDK-APP/aplikasi-keren.ign
@@ -64,6 +79,7 @@ By default, IGN SDK local debugging could be activated by this method:
 ~~~
 $ ignsdk -d -p ~/IGNSDK-APP/aplikasi-keren.ign
 ~~~
+
 * Add the `debug` object with `true` value within `ignsdk.json` file
 ~~~json
 {
@@ -75,14 +91,13 @@ $ ignsdk -d -p ~/IGNSDK-APP/aplikasi-keren.ign
 }
 ~~~
 
-![Local Debugging](img/gb1.png)
-
 ###1.2 Remote Debugging
 
 Remote debugging will facilitated developer to enter IGN SDK debug mode with browser or other device. To activated remote debugging, you just add a parameter `-r <port>` while execute IGN SDK application
 ~~~
 $ ignsdk -d -r 8080 ~/IGNSDK-APP/aplikasi-keren.ign
 ~~~
+
 Then access the debugging mode at your browser with this URL `http://ip-target:port`. For the example you could try `http://127.0.0.1:8080` to access your application debugging mode.
 
 ##Packaging the Application
@@ -95,11 +110,13 @@ IGN SDK-based application could distribute to user in many ways. The easiest way
 ~~~
 $ ignsdk-app-builder -p aplikasi-keren
 ~~~
+
 3. Packaging system will start the process
 4. If the process has finish, the package will bundled in .rpm with name `aplikasikeren.ign-1.0-ign9.noarch.rpm`. You could find the package at  `/home/igos/rpmbuild/RPMS/noarch/`. And now try to install that package with this command:
 ~~~
 $ sudo yum install ~/rpmbuild/RPMS/noarch/aplikasi-keren.ign-1.0-ign9.noarch.rpm
 ~~~
+
 5. After the package is installed, it will appear a menu called **Aplikasi Keren**. Next, the application could execute from that menu
 
 ##Example Application
