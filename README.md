@@ -4,15 +4,18 @@ IGN SDK is included in IGOS Nusantara D9.1 as default package. If it's not insta
 
 1. Open your Terminal Application
 2. IGN SDK binary is launcher for the application built with IGN SDK. You could install IGN SDK package using this command:
+
 ~~~shell
 $ sudo yum install ignsdk
 ~~~
 
 3. You could try another optional package called `ignsdk-devtools`. This package is contain tools for creating and packaging IGN SDK Application. Try this command to install `ignsdk-devtools`:  
+
 ~~~shell
 $ sudo yum install ignsdk-devtools
 ~~~
 4. You could test the SDK by running the sample application that located in /usr/share/ignsdk/test. Try this example test:
+
 ~~~shell
 ignsdk -p /usr/share/ign-sdk/test/calculator.ign
 ~~~
